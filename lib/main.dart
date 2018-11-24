@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'diagonal_clipper.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,10 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildImage() {
     return new Positioned.fill(
         bottom: null,
-        child: new Image.asset(
-          'images/birds.jpg',
-          fit: BoxFit.cover,
-          height: _imageHeight,
+        child: new ClipPath(
+          clipper: DiagonalClipper(),
+          child: new Image.asset(
+            'images/birds.jpg',
+            fit: BoxFit.cover,
+            height: _imageHeight,
+          ),
         ));
   }
 
