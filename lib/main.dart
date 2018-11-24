@@ -25,11 +25,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double _imageHeight = 256.0;
+  Widget _buildImage() {
+    return new Positioned.fill(
+        bottom: null,
+        child: new Image.asset(
+          'images/birds.jpg',
+          fit: BoxFit.cover,
+          height: _imageHeight,
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: new Stack(
-      children: <Widget>[],
+      children: <Widget>[_buildImage()],
     ));
   }
 }
