@@ -36,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
             'images/birds.jpg',
             fit: BoxFit.cover,
             height: _imageHeight,
+            colorBlendMode: BlendMode.srcOver,
+            color: new Color.fromARGB(120, 20, 10, 40),
           ),
         ));
   }
