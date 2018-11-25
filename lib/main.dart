@@ -154,6 +154,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _buildTimeline() {
+    return new Positioned(
+      top: 0.0,
+      bottom: 0.0,
+      left: 32.0,
+      child: new Container(
+        width: 1.0,
+        color: Colors.grey[300],
+      ),
+    )
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
