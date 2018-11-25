@@ -121,6 +121,39 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _buildBottomPart() {
+    return new Padding(
+      padding: new EdgeInsets.only(top: _imageHeight),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[_buildMyTasksHeader(), _buildTasksList()],
+      ),
+    );
+  }
+
+  Widget _buildTasksList() {
+    return new Container();
+  }
+
+  Widget _buildMyTasksHeader() {
+    return new Padding(
+      padding: new EdgeInsets.only(left: 64.0),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Text(
+            'My Tasks',
+            style: new TextStyle(fontSize: 34.0),
+          ),
+          new Text(
+            'Nov 25, 2018',
+            style: new TextStyle(fontSize: 12.0, color: Colors.grey),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -128,7 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           _buildImage(),
           _buildTopHeader(),
-          _buildProfileRow()
+          _buildProfileRow(),
+          _buildBottomPart()
         ],
       ),
     );
