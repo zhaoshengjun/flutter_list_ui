@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'diagonal_clipper.dart';
+import 'task.dart';
+import 'task_row.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -132,7 +134,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildTasksList() {
-    return new Container();
+    return new Expanded(
+      child: new ListView(
+        children: tasks.map((task) => new TaskRow(task: task)).toList(),
+      ),
+    );
   }
 
   Widget _buildMyTasksHeader() {
@@ -163,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
         width: 1.0,
         color: Colors.grey[300],
       ),
-    )
+    );
   }
 
   @override
@@ -171,6 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       body: new Stack(
         children: <Widget>[
+          _buildTimeline(),
           _buildImage(),
           _buildTopHeader(),
           _buildProfileRow(),
