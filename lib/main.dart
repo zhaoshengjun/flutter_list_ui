@@ -83,6 +83,44 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _buildProfileRow() {
+    return new Padding(
+      padding: new EdgeInsets.only(left: 16.0, top: _imageHeight / 2.5),
+      child: new Row(
+        children: <Widget>[
+          new CircleAvatar(
+            minRadius: 28.0,
+            maxRadius: 28.0,
+            backgroundImage: new AssetImage('images/avatar.jpeg'),
+          ),
+          new Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                new Text(
+                  'Shengjun Zhao',
+                  style: new TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+                new Text(
+                  'Product Designer',
+                  style: new TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -90,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           _buildImage(),
           _buildTopHeader(),
+          _buildProfileRow()
         ],
       ),
     );
