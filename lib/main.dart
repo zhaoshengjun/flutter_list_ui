@@ -187,6 +187,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _buildFab() {
+    return new Positioned(
+        top: _imageHeight - 36.0,
+        right: 16.0,
+        child: new FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.pink,
+          child: new Icon(Icons.filter_list),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -196,7 +207,8 @@ class _MyHomePageState extends State<MyHomePage> {
           _buildImage(),
           _buildTopHeader(),
           _buildProfileRow(),
-          _buildBottomPart()
+          _buildBottomPart(),
+          _buildFab()
         ],
       ),
     );
