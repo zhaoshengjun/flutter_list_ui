@@ -34,6 +34,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double _imageHeight = 256.0;
+  final GlobalKey<AnimatedListState> _listKey =
+      new GlobalKey<AnimatedListState>();
+
   Widget _buildImage() {
     return new Positioned.fill(
       bottom: null,
@@ -135,8 +138,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildTasksList() {
     return new Expanded(
-      child: new ListView(
-        children: tasks.map((task) => new TaskRow(task: task)).toList(),
+      child: new AnimatedList(
+        initialItemCount: tasks.length,
+        key: _listKey,
+        itemBuilder: (context, index, animation) {
+          return new TaskRow(task: tasks[index]);
+        },
       ),
     );
   }
