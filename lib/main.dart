@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'diagonal_clipper.dart';
 import 'task.dart';
 import 'task_row.dart';
+import 'list_model.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -36,6 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
   double _imageHeight = 256.0;
   final GlobalKey<AnimatedListState> _listKey =
       new GlobalKey<AnimatedListState>();
+  ListModel listModel;
+
+  @override
+  void initState() {
+    super.initState();
+    listModel = new ListModel(_listKey, tasks);
+  }
 
   Widget _buildImage() {
     return new Positioned.fill(
@@ -142,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
         initialItemCount: tasks.length,
         key: _listKey,
         itemBuilder: (context, index, animation) {
-          return new TaskRow(task: tasks[index]);
+          return new TaskRow(task: listModel[index]);
         },
       ),
     );
