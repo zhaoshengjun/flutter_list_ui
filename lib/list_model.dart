@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'task_row.dart';
 import 'task.dart';
 
 class ListModel {
@@ -16,7 +17,12 @@ class ListModel {
   Task removeAt(int index) {
     final Task removedItem = items.removeAt(index);
     if (removedItem != null) {
-      _animatedList.removeItem(index, (context, animation) => new Container());
+      _animatedList.removeItem(
+          index,
+          (context, animation) => new TaskRow(
+                task: removedItem,
+                animation: animation,
+              ));
     }
 
     return removedItem;

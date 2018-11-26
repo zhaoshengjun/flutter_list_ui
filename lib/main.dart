@@ -151,7 +151,10 @@ class _MyHomePageState extends State<MyHomePage> {
         initialItemCount: tasks.length,
         key: _listKey,
         itemBuilder: (context, index, animation) {
-          return new TaskRow(task: listModel[index]);
+          return new TaskRow(
+            task: listModel[index],
+            animation: animation,
+          );
         },
       ),
     );
