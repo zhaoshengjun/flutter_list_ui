@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<AnimatedListState> _listKey =
       new GlobalKey<AnimatedListState>();
   ListModel listModel;
+  bool showOnlyCompleted = false;
 
   @override
   void initState() {
@@ -192,10 +193,21 @@ class _MyHomePageState extends State<MyHomePage> {
         top: _imageHeight - 36.0,
         right: 16.0,
         child: new FloatingActionButton(
-          onPressed: () {},
+          onPressed: _changeFilterState,
           backgroundColor: Colors.pink,
           child: new Icon(Icons.filter_list),
         ));
+  }
+
+  void _changeFilterState() {
+    showOnlyCompleted = !showOnlyCompleted;
+    tasks.where((task) => !task.completed).forEach((task) {
+      if (showOnlyCompleted) {
+        listModel.removeAt(listModel.indexOf(task));
+      } else {
+        listModel.insert(tasks.indexOf(task), task);
+      }
+    });
   }
 
   @override
