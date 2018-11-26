@@ -11,7 +11,7 @@ class ListModel {
 
   void insert(int index, Task item) {
     items.insert(index, item);
-    _animatedList.insertItem(index);
+    _animatedList.insertItem(index, duration: new Duration(milliseconds: 150));
   }
 
   Task removeAt(int index) {
@@ -22,7 +22,9 @@ class ListModel {
           (context, animation) => new TaskRow(
                 task: removedItem,
                 animation: animation,
-              ));
+              ),
+          duration: new Duration(
+              milliseconds: (150 + 150 * (index / length)).toInt()));
     }
 
     return removedItem;
