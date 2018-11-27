@@ -194,8 +194,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildFab() {
     return new Positioned(
-        top: _imageHeight - 36.0,
-        right: 16.0,
+        top: _imageHeight - 100.0,
+        right: -40.0,
         child: new AnimatedFab(onPressed: _changeFilterState));
   }
 

@@ -12,6 +12,7 @@ class _AnimatedFabState extends State<AnimatedFab>
     with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<Color> _colorAnimation;
+  final double expandedSize = 180.0;
 
   @override
   void initState() {
@@ -30,11 +31,18 @@ class _AnimatedFabState extends State<AnimatedFab>
 
   @override
   Widget build(BuildContext context) {
-    return new AnimatedBuilder(
-      animation: _animationController,
-      builder: (BuildContext context, Widget child) {
-        return _buildFabCore();
-      },
+    return new SizedBox(
+      width: expandedSize,
+      height: expandedSize,
+      child: new AnimatedBuilder(
+        animation: _animationController,
+        builder: (BuildContext context, Widget child) {
+          return new Stack(
+            alignment: Alignment.center,
+            children: <Widget>[_buildFabCore()],
+          );
+        },
+      ),
     );
   }
 
