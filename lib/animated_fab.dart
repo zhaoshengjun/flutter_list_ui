@@ -39,9 +39,19 @@ class _AnimatedFabState extends State<AnimatedFab>
   }
 
   Widget _buildFabCore() {
+    double scaleFactor = 2 * (_animationController.value - 0.5).abs();
+
     return new FloatingActionButton(
       onPressed: _onFabTap,
-      child: new Icon(Icons.filter_list),
+      child: new Transform(
+        alignment: Alignment.center,
+        transform: new Matrix4.identity()..scale(1.0, scaleFactor),
+        child: new Icon(
+          _animationController.value > 0.5 ? Icons.close : Icons.filter_list,
+          color: Colors.white,
+          size: 26.0,
+        ),
+      ),
       backgroundColor: _colorAnimation.value,
     );
   }
