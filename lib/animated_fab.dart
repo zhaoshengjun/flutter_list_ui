@@ -104,6 +104,10 @@ class _AnimatedFabState extends State<AnimatedFab>
   }
 
   _buildOption(IconData icon, double angle) {
+    double iconSize = 0.0;
+    if (_animationController.value > 0.8) {
+      iconSize = 26.0 * (_animationController.value - 0.8) * 5;
+    }
     return new Transform.rotate(
       angle: angle,
       child: new Align(
@@ -119,7 +123,7 @@ class _AnimatedFabState extends State<AnimatedFab>
                 color: Colors.white,
               ),
             ),
-            iconSize: 26.0,
+            iconSize: iconSize,
             alignment: Alignment.center,
             padding: new EdgeInsets.all(0.0),
           ),
