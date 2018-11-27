@@ -8,19 +8,61 @@ class AnimatedFab extends StatefulWidget {
   _AnimatedFabState createState() => _AnimatedFabState();
 }
 
-class _AnimatedFabState extends State<AnimatedFab> {
+class _AnimatedFabState extends State<AnimatedFab>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<Color> _colorAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 200));
+    _colorAnimation = new ColorTween(begin: Colors.pink, end: Colors.pink[800])
+        .animate(_animationController);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: _buildFabCore(),
+    return new AnimatedBuilder(
+      animation: _animationController,
+      builder: (BuildContext context, Widget child) {
+        return _buildFabCore();
+      },
     );
   }
 
   Widget _buildFabCore() {
     return new FloatingActionButton(
-      onPressed: widget.onClick,
+      onPressed: _onFabTap,
       child: new Icon(Icons.filter_list),
-      backgroundColor: Colors.pink,
+      backgroundColor: _colorAnimation.value,
     );
+  }
+
+  _onFabTap() {
+    if (_animationController.isDismissed) {
+      open();
+    } else {
+      close();
+    }
+  }
+
+  open() {
+    if (_animationController.isDismissed) {
+      _animationController.forward();
+    }
+  }
+
+  close() {
+    if (_animationController.isCompleted) {
+      _animationController.reverse();
+    }
   }
 }
