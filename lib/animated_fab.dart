@@ -13,6 +13,7 @@ class _AnimatedFabState extends State<AnimatedFab>
   AnimationController _animationController;
   Animation<Color> _colorAnimation;
   final double expandedSize = 180.0;
+  final double hiddenSize = 20.0;
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _AnimatedFabState extends State<AnimatedFab>
         builder: (BuildContext context, Widget child) {
           return new Stack(
             alignment: Alignment.center,
-            children: <Widget>[_buildFabCore()],
+            children: <Widget>[_buildExpandedBackground(), _buildFabCore()],
           );
         },
       ),
@@ -82,5 +83,15 @@ class _AnimatedFabState extends State<AnimatedFab>
     if (_animationController.isCompleted) {
       _animationController.reverse();
     }
+  }
+
+  Widget _buildExpandedBackground() {
+    double size =
+        hiddenSize + (expandedSize - hiddenSize) * _animationController.value;
+    return new Container(
+      height: size,
+      width: size,
+      decoration: new BoxDecoration(shape: BoxShape.circle, color: Colors.pink),
+    );
   }
 }
