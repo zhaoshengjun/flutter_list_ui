@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Positioned(
         top: _imageHeight - 100.0,
         right: -40.0,
-        child: new AnimatedFab(onPressed: _changeFilterState));
+        child: new AnimatedFab(onClick: _changeFilterState));
   }
 
   void _changeFilterState() {

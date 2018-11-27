@@ -3,7 +3,7 @@ import 'dart:math';
 
 class AnimatedFab extends StatefulWidget {
   final VoidCallback onClick;
-  const AnimatedFab({Key key, this.onClick, onPressed}) : super(key: key);
+  const AnimatedFab({Key key, this.onClick}) : super(key: key);
 
   @override
   _AnimatedFabState createState() => _AnimatedFabState();
@@ -115,7 +115,7 @@ class _AnimatedFabState extends State<AnimatedFab>
         child: new Padding(
           padding: new EdgeInsets.only(top: 8.0),
           child: new IconButton(
-            onPressed: null,
+            onPressed: _onIconClick,
             icon: new Transform.rotate(
               angle: -angle,
               child: new Icon(
@@ -130,5 +130,10 @@ class _AnimatedFabState extends State<AnimatedFab>
         ),
       ),
     );
+  }
+
+  _onIconClick() {
+    widget.onClick();
+    close();
   }
 }
