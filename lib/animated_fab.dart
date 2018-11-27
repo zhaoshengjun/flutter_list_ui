@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class AnimatedFab extends StatefulWidget {
   final VoidCallback onClick;
@@ -40,7 +41,14 @@ class _AnimatedFabState extends State<AnimatedFab>
         builder: (BuildContext context, Widget child) {
           return new Stack(
             alignment: Alignment.center,
-            children: <Widget>[_buildExpandedBackground(), _buildFabCore()],
+            children: <Widget>[
+              _buildExpandedBackground(),
+              _buildOption(Icons.check_circle, 0.0),
+              _buildOption(Icons.flash_on, -pi / 3),
+              _buildOption(Icons.access_time, -2 * pi / 3),
+              _buildOption(Icons.error_outline, pi),
+              _buildFabCore()
+            ],
           );
         },
       ),
@@ -92,6 +100,31 @@ class _AnimatedFabState extends State<AnimatedFab>
       height: size,
       width: size,
       decoration: new BoxDecoration(shape: BoxShape.circle, color: Colors.pink),
+    );
+  }
+
+  _buildOption(IconData icon, double angle) {
+    return new Transform.rotate(
+      angle: angle,
+      child: new Align(
+        alignment: Alignment.topCenter,
+        child: new Padding(
+          padding: new EdgeInsets.only(top: 8.0),
+          child: new IconButton(
+            onPressed: null,
+            icon: new Transform.rotate(
+              angle: -angle,
+              child: new Icon(
+                icon,
+                color: Colors.white,
+              ),
+            ),
+            iconSize: 26.0,
+            alignment: Alignment.center,
+            padding: new EdgeInsets.all(0.0),
+          ),
+        ),
+      ),
     );
   }
 }
