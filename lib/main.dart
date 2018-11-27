@@ -4,6 +4,7 @@ import 'diagonal_clipper.dart';
 import 'task.dart';
 import 'task_row.dart';
 import 'list_model.dart';
+import 'animated_fab.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -195,11 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Positioned(
         top: _imageHeight - 36.0,
         right: 16.0,
-        child: new FloatingActionButton(
-          onPressed: _changeFilterState,
-          backgroundColor: Colors.pink,
-          child: new Icon(Icons.filter_list),
-        ));
+        child: new AnimatedFab(onPressed: _changeFilterState));
   }
 
   void _changeFilterState() {

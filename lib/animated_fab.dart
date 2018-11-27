@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AnimatedFab extends StatefulWidget {
   final VoidCallback onClick;
-  const AnimatedFab({Key key, this.onClick}) : super(key: key);
+  const AnimatedFab({Key key, this.onClick, onPressed}) : super(key: key);
 
   @override
   _AnimatedFabState createState() => _AnimatedFabState();
